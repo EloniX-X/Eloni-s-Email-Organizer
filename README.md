@@ -1,3 +1,5 @@
 # Eloni-s-Email-Organizer
 organize emails really easily
-![image (3)](https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/6a34ade6-bd6d-44e5-9f8b-80d6b1354536)
+
+
+<img width="416" alt="best" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/6e2e2d2b-3da4-46a8-aa40-7a3b6e1c4432">
