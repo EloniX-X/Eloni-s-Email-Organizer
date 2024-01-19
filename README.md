@@ -12,3 +12,5 @@ This extension tries to help you organize your emails efficiently and simply, th
 first you queu up a request like a user email or keyword, for email just put the email in copy paste it exactly add a label click the add button, and then at the top of the screen enter the amount of emails to look at and click go, after you do this it'll look at all the emails that you selected see if its from the user or keyword and then add the label to it. with labels you can filter and bulk delete really anything you want in gmail. 
 
 I will quickly look at and do all suggestions sent to my email elonshagre@gmail.com
+
+
