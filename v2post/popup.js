@@ -1,4 +1,5 @@
 alert("your using a downloaded version of Eloni's Email Organizer")
+
 console.log("Icon clicked.");
 let globalToken = null; 
 
@@ -63,19 +64,19 @@ function getUserId(token) {
             return response.json();
         })
         .then(data => {
-
+           // console.log("done")
             userid = data;
-            resolve(data); 
+            resolve(data); // Resolve the promise with the user ID
         })
         .catch(error => {
-            reject(error);
+            reject(error); // Reject the promise if there's an error
         });
     });
 }
 
 const lablist = {}
 async function GetUserLabels(token, userid) {
-   
+   // console.log(userid)
     try {
 
         
@@ -103,7 +104,9 @@ async function GetUserLabels(token, userid) {
                 let option = document.createElement("option");
                 option.text = element;
                 x.add(option);   
-                lablist[element] = idnam[i]
+                //console.log(idnam)
+                lablist[element] = idnam
+                //console.log(lablist)
             })
            // console.log(lablist)
             let a = document.getElementById("labels2");
@@ -198,8 +201,8 @@ async function cryptcram(token, str, msgid) {
     }
 
     let kws = Object.keys(toaddkw);
-    console.log(kws);
-    console.log(bdtx);
+    //console.log(kws);
+    //console.log(bdtx);
 
 
  //   console.log(toaddkw);
@@ -211,9 +214,9 @@ async function cryptcram(token, str, msgid) {
            // labid = lablist[aftr];
             aftere = toaddkw[element];
             labbidwabbid = lablist[aftere];
-            console.log(element);
+            //console.log(element);
             console.log("inside");
-            console.log(labbidwabbid)
+           // console.log(labbidwabbid)
             modifyMessageLabels(globalToken, msgid, labbidwabbid)
         } else {
             console.log("nothing");
@@ -235,88 +238,75 @@ async function GetUserMessage (token, idofmessage) {
     let data = await response.json();
     let msgid = data.id;
 
-    //  heads = data.payload.headers
-    // console.log(heads)
-    //var decodedStringAtoB = atob(encodedStringAtoB); keep this
-    //  console.log("messages")
-    // console.log(data)
-    // console.log("end")
-    //msgid = data
-    //msgid = data.id
-    //bodytext = data.payload.parts[0].body;
-   // console.log(bodytext);
-    // console.log(bodytext)
-    //console.log(bodytext.indexOf("data"));
     if (data.payload && Array.isArray(data.payload.parts) && data.payload.parts.length > 0 && data.payload.parts[0].body) {
         let bodytext = data.payload.parts[0].body;
         let ascine = bodytext.data;
-        console.log(ascine);
-
-        
+   
         await cryptcram(globalToken, ascine, msgid);
     }
+    await getusers(data);
 
-
-   // ascine = bodytext.data;
-    // const strnngg = atob(ascine);
-    //cryptcram(globalToken, ascine, msgid); // "✓ à la mode"
-    // console.log(decoded);
-    
-    let john = data.payload.headers.filter(e => e.name === 'From').map(e => e.value);
-    
-    emals = john[0];
-    emalid = data.id;
-    emal = emals.split('<').pop().split('>')[0]; // returns 'two'
-    if (emal in toaddusr) {
-        //console.log(toaddusr);
-        //console.log(lablist);
-        //console.log(emal + " IM IN HERE !!! ");
-        aftr = toaddusr[emal];
-        labid = lablist[aftr];
-        modifyMessageLabels(globalToken, emalid, labid);
-
-    } else {
-        console.log(emal + "IM NOT IN HERE");
-    };
     //  console.log("after else")
 } catch (error) {
     console.log("error in getting user message: ", error.message)
 }
 }
 
+async function getusers(data) {
+    let john = data.payload.headers.filter(e => e.name === 'From').map(e => e.value);
+    
+    let emals = john[0];
+    let emalid = data.id;
+    let emal = emals.split('<').pop().split('>')[0]; // Extracts email address
 
-function modifyMessageLabels(authToken, messageId, labid) {
-   // console.log("Running modifyMessageLabels");
-   // console.log(messageId);
-   // console.log("Post");
-    // Example label IDs - replace with actual IDs
-   // const addLabelIds = ['Label_1']; // Add label IDs here
-  //  const removeLabelIds = ['LABEL_ID_TO_REMOVE']; // Remove label IDs here
-   // console.log(lablist)
-    const requestBody = {
-        "addLabelIds": [
-          labid
-        ]
-      }
-    fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${messageId}/modify`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${authToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    if (emal in toaddusr) {
+        console.log("hit on email");
+      //  console.log(toaddusr)
+        let aftr = toaddusr[emal];
+        let labid = lablist[aftr];
+
+        if (labid) {
+            try {
+                await modifyMessageLabels(globalToken, emalid, labid);
+            } catch (error) {
+                console.error("Error in modifyMessageLabels:", error);
+            }
+        } else {
+            console.log("No label ID found for:", emal);
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Message modified:', data);
-    })
-    .catch(error => {
-        console.error('Error modifying message:', error);
-    });
+    } else {
+        console.log(emal + " is not in the list");
+    };
 }
 
+
+
+
+async function modifyMessageLabels(authToken, messageId, labid) {
+    //console.log(labid)
+    const requestBody = {
+        "addLabelIds": [
+            labid
+        ]
+    };
+    try {
+        const response = await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${messageId}/modify`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text(); // Get more detailed error information
+            throw new Error(`HTTP error! status: ${response.status}, Body: ${errorBody}`);
+        }
+
+        const data = await response.json();
+        console.log('Message modified:', data);
+    } catch (error) {
+        console.error('Error modifying message:', error);
+    }
+}
