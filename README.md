@@ -14,3 +14,15 @@ first you queu up a request like a user email or keyword, for email just put the
 I will quickly look at and do all suggestions sent to my email elonshagre@gmail.com
 
 
+TUTORIAL
+<img width="1440" alt="Screenshot 2024-01-19 at 5 06 16 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/7897923f-b2eb-450a-8530-c3eef54b7cb1">
+<img width="1440" alt="Screenshot 2024-01-19 at 5 06 52 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/f5ce94b3-f777-49c1-a630-d52ab1213965">
+<img width="316" alt="Screenshot 2024-01-19 at 5 07 58 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/c5bf2ecd-1b23-48e7-a218-6c02dd454d7a">
+<img width="354" alt="Screenshot 2024-01-19 at 5 08 29 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/c1fae48f-aa23-4184-9bdc-0880bc79cf41">
+<img width="354" alt="Screenshot 2024-01-19 at 5 09 30 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/d432df12-e58d-4032-a62c-af345ee9b7cc">
+<img width="1114" alt="Screenshot 2024-01-19 at 5 11 02 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/72f00273-cec8-4f82-9ec3-9e2f4c6fc0d5">
+<img width="1114" alt="Screenshot 2024-01-19 at 5 11 20 PM" src="https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/cc6499bf-bd0f-41d1-a569-947dfb278ad1">
+
+
+https://github.com/EloniX-X/Eloni-s-Email-Organizer/assets/62807180/f59d4515-9bde-4107-b5bd-6cacee7a3e18
+
