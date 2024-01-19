@@ -1,0 +1,53 @@
+{
+    "manifest_version": 3,
+    "name": "Eloni's Email Organizer",
+    "description": "This is a very simple chrome extension to help you manage your emails!!!",
+    "version": "0.001",
+    "key":"key is hidden for security reasons",
+    "permissions": [
+        "identity",
+        "activeTab",
+        "scripting"
+    ],
+
+    "background": {
+        "service_worker": "background.js"
+    },
+    "oauth2": {
+        "client_id": "removed for security",
+        "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/gmail.readonly",
+            "https://www.googleapis.com/auth/gmail.modify"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://mail.google.com/mail/*"],
+            "js": ["popup.js"],
+            "css": ["hello.css"],
+            "run_at": "document_start",
+            "all_frames": false
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "24": "icons/icon32.png",
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png"
+        },
+        "default_title": "Click Me",
+        "default_popup": "hello.html",
+        "show_matches": ["*://mail.google.com/mail/*"]
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["assets/*.svg"],
+            "matches": ["https://mail.google.com/*"]
+        }
+    ]
+}

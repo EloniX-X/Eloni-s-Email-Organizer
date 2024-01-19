@@ -1,0 +1,35 @@
+html {
+    width: 350px;
+    height: 320px;
+    background-color: black;
+    border-image: linear-gradient(
+      to bottom, 
+      white, 
+      rgba(0, 0, 0, 0)
+    ) 1;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 30px;
+}
+
+
+
+p, h1{
+    color: white;
+}
+
+
+
+#chkbutton {
+  position:absolute;
+  top: 16px;
+  left: 110px;
+  width: 30px;
+}
+
+#confirmarea {
+  width: fit-content;
+  height: fit-content;
+  overflow-y: scroll;
+
+}
